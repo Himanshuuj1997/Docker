@@ -1,0 +1,31 @@
+FROM maven:3.8.5-openjdk-17
+
+
+
+WORKDIR /app
+
+
+COPY pom.xml .
+
+
+COPY src  ./src
+
+
+RUN mvn clean package
+
+
+
+FROM openjdk:17-jdk-alpine
+
+
+
+WORKDIR /app
+
+
+COPY  --from=build /app/target/myapp.jar  ./myapp.jar
+
+
+EXPOSE 8080
+
+
+CMD ["java", "-jar", "myapp.jar"]
