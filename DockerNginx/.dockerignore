@@ -1,0 +1,6 @@
+# Ignore all files in the current directory
+#*
+# Allow specific files
+!nginx.conf
+!html/
+
